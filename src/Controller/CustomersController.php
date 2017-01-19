@@ -37,7 +37,7 @@ class CustomersController extends AppController
     public function view($id = null)
     {
         $customer = $this->Customers->get($id, [
-            'contain' => []
+            'contain' => ['Customers']
         ]);
 
         $this->set('customer', $customer);
@@ -62,7 +62,7 @@ class CustomersController extends AppController
                 $this->Flash->error(__('The customer could not be saved. Please, try again.'));
             }
         }
-        $customers = $this->Customers->find('list', ['limit' => 200]);
+        $customers = $this->Customers->Customers->find('list', ['limit' => 200]);
         $this->set(compact('customer', 'customers'));
         $this->set('_serialize', ['customer']);
     }
@@ -113,24 +113,4 @@ class CustomersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-	
-	public function login(){
-		if ($this->request->is('post')) {
-			$user = $this->Auth->identify();
-			if ($user) {
-				$this->Auth->setUser($user);
-				
-				if($this->Auth->user("level_id")==1){
-					return $this->redirect(['controller' => 'customers','action' => 'adminview']);
-				}
-				else if($this->Auth->user("level_id")==0){
-					return $this->redirect(['controller' => 'customers','action' => 'modoview']);
-				}
-			}
-				$this->Flash->error('Votre identifiant et/ou votre mot de passe est incorrect.');
-				debug($this->Auth->identify());
-				debug($this->Auth->user("level_id"));
-				// return $this->redirect(['controller' => 'pages','action' => 'home']);
-		}
-	}
 }

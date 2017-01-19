@@ -40,11 +40,6 @@ class CustomersTable extends Table
             'foreignKey' => 'customer_id',
             'joinType' => 'INNER'
         ]);
-		
-		$this->hasMany('ShoppingLists', [
-            'foreignKey' => 'customer_id',
-            'joinType' => 'INNER'
-        ]);
     }
 
     /**
@@ -87,7 +82,7 @@ class CustomersTable extends Table
      */
     public function buildRules(RulesChecker $rules)
     {
-		$rules->add($rules->existsIn(['customer_id'], 'ShoppingLists'));
+        $rules->add($rules->existsIn(['customer_id'], 'Customers'));
 
         return $rules;
     }
