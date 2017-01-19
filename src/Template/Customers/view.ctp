@@ -7,6 +7,8 @@
         <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?> </li>
         <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?> </li>
         <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?> </li>
+        <li><?= $this->Html->link(__('List Shopping Lists'), ['controller' => 'ShoppingLists', 'action' => 'index']) ?> </li>
+        <li><?= $this->Html->link(__('New Shopping List'), ['controller' => 'ShoppingLists', 'action' => 'add']) ?> </li>
     </ul>
 </nav>
 <div class="customers view large-9 medium-8 columns content">
@@ -36,5 +38,32 @@
             <th scope="row"><?= __('Customer Password') ?></th>
             <td><?= h($customer->customer_password) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Level Id') ?></th>
+            <td><?= $this->Number->format($customer->level_id) ?></td>
+        </tr>
     </table>
+    <div class="related">
+        <h4><?= __('Related Shopping Lists') ?></h4>
+        <?php if (!empty($customer->shopping_lists)): ?>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th scope="col"><?= __('Shopping List Id') ?></th>
+                <th scope="col"><?= __('Customer Id') ?></th>
+                <th scope="col" class="actions"><?= __('Actions') ?></th>
+            </tr>
+            <?php foreach ($customer->shopping_lists as $shoppingLists): ?>
+            <tr>
+                <td><?= h($shoppingLists->shopping_list_id) ?></td>
+                <td><?= h($shoppingLists->customer_id) ?></td>
+                <td class="actions">
+                    <?= $this->Html->link(__('View'), ['controller' => 'ShoppingLists', 'action' => 'view', $shoppingLists->shopping_list_id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['controller' => 'ShoppingLists', 'action' => 'edit', $shoppingLists->shopping_list_id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'ShoppingLists', 'action' => 'delete', $shoppingLists->shopping_list_id], ['confirm' => __('Are you sure you want to delete # {0}?', $shoppingLists->shopping_list_id)]) ?>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </table>
+        <?php endif; ?>
+    </div>
 </div>

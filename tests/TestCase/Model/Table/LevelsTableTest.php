@@ -1,22 +1,22 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\CustomersTable;
+use App\Model\Table\LevelsTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\CustomersTable Test Case
+ * App\Model\Table\LevelsTable Test Case
  */
-class CustomersTableTest extends TestCase
+class LevelsTableTest extends TestCase
 {
 
     /**
      * Test subject
      *
-     * @var \App\Model\Table\CustomersTable
+     * @var \App\Model\Table\LevelsTable
      */
-    public $Customers;
+    public $Levels;
 
     /**
      * Fixtures
@@ -24,8 +24,7 @@ class CustomersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.customers',
-        'app.shopping_lists'
+        'app.levels'
     ];
 
     /**
@@ -36,8 +35,8 @@ class CustomersTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::exists('Customers') ? [] : ['className' => 'App\Model\Table\CustomersTable'];
-        $this->Customers = TableRegistry::get('Customers', $config);
+        $config = TableRegistry::exists('Levels') ? [] : ['className' => 'App\Model\Table\LevelsTable'];
+        $this->Levels = TableRegistry::get('Levels', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class CustomersTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Customers);
+        unset($this->Levels);
 
         parent::tearDown();
     }
