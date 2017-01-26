@@ -4,6 +4,8 @@
         <li><?= $this->Html->link(__('List Customers'), ['action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('List Customers'), ['controller' => 'Customers', 'action' => 'index']) ?></li>
         <li><?= $this->Html->link(__('New Customer'), ['controller' => 'Customers', 'action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Shopping Lists'), ['controller' => 'ShoppingLists', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Shopping List'), ['controller' => 'ShoppingLists', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="customers form large-9 medium-8 columns content">
@@ -16,6 +18,7 @@
             echo $this->Form->input('customer_surname');
             echo $this->Form->input('customer_mail');
             echo $this->Form->input('customer_password');
+            echo $this->Form->input('level_id');
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>

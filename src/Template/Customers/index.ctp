@@ -2,6 +2,8 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Html->link(__('New Customer'), ['action' => 'add']) ?></li>
+        <li><?= $this->Html->link(__('List Shopping Lists'), ['controller' => 'ShoppingLists', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Shopping List'), ['controller' => 'ShoppingLists', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="customers index large-9 medium-8 columns content">
@@ -15,6 +17,7 @@
                 <th scope="col"><?= $this->Paginator->sort('customer_surname') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('customer_mail') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('customer_password') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('level_id') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
             </tr>
         </thead>
@@ -27,6 +30,7 @@
                 <td><?= h($customer->customer_surname) ?></td>
                 <td><?= h($customer->customer_mail) ?></td>
                 <td><?= h($customer->customer_password) ?></td>
+                <td><?= $this->Number->format($customer->level_id) ?></td>
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $customer->customer_id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $customer->customer_id]) ?>
