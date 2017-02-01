@@ -19,7 +19,7 @@ class ProductsController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => ['Products', 'Categories', 'Brands', 'Locations']
+            'contain' => ['Categories', 'Brands', 'Locations']
         ];
         $products = $this->paginate($this->Products);
 
@@ -37,7 +37,7 @@ class ProductsController extends AppController
     public function view($id = null)
     {
         $product = $this->Products->get($id, [
-            'contain' => ['Products', 'Categories', 'Brands', 'Locations']
+            'contain' => ['Categories', 'Brands', 'Locations']
         ]);
 
         $this->set('product', $product);
