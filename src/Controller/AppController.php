@@ -45,22 +45,22 @@ class AppController extends Controller
         $this->loadComponent('Flash');
 		
 		parent::initialize();
-		$this->loadComponent('Auth', [
-			'loginAction' => [
-				'controller' => 'Customers',
-				'action' => 'login'
-			],
-			'authError' => 'Did you really think you are allowed to see that?',
-			'authenticate' => [
-				'Form' => [
-					'fields' => ['customer_pseudo' => 'customer_pseudo','customer_password' => 'customer_password']
-				]
-			],
-			'storage' => 'Session'
-		]);
+		// $this->loadComponent('Auth', [
+			// 'loginAction' => [
+				// 'controller' => 'Customers',
+				// 'action' => 'login'
+			// ],
+			// 'authError' => 'Did you really think you are allowed to see that?',
+			// 'authenticate' => [
+				// 'Form' => [
+					// 'fields' => ['customer_pseudo' => 'customer_pseudo','customer_password' => 'customer_password']
+				// ]
+			// ],
+			// 'storage' => 'Session'
+		// ]);
         // Autorise l'action display pour que notre controller de pages
         // continue de fonctionner.
-        $this->Auth->allow(['display']);
+        // $this->Auth->allow(['display']);
 
 
         /*
