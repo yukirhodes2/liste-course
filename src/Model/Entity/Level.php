@@ -4,20 +4,14 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Customer Entity
+ * Level Entity
  *
- * @property int $customer_id
- * @property string $customer_pseudo
- * @property string $customer_name
- * @property string $customer_surname
- * @property string $customer_mail
- * @property string $customer_password
  * @property int $level_id
+ * @property string $level_libelle
  *
- * @property \App\Model\Entity\Customer $customer
- * @property \App\Model\Entity\ShoppingList[] $shopping_lists
+ * @property \App\Model\Entity\Level $level
  */
-class Customer extends Entity
+class Level extends Entity
 {
 
     /**
@@ -31,6 +25,6 @@ class Customer extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'customer_id' => false
+        'level_id' => false
     ];
 }

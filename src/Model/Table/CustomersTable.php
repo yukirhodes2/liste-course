@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Customers Model
  *
  * @property \Cake\ORM\Association\BelongsTo $Customers
+ * @property \Cake\ORM\Association\BelongsTo $Levels
  *
  * @method \App\Model\Entity\Customer get($primaryKey, $options = [])
  * @method \App\Model\Entity\Customer newEntity($data = null, array $options = [])
@@ -38,6 +39,10 @@ class CustomersTable extends Table
 
         $this->belongsTo('Customers', [
             'foreignKey' => 'customer_id',
+            'joinType' => 'INNER'
+        ]);
+        $this->belongsTo('Levels', [
+            'foreignKey' => 'level_id',
             'joinType' => 'INNER'
         ]);
     }
@@ -83,6 +88,7 @@ class CustomersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['customer_id'], 'Customers'));
+        $rules->add($rules->existsIn(['level_id'], 'Levels'));
 
         return $rules;
     }

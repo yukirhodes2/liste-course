@@ -19,7 +19,7 @@ class CustomersController extends AppController
     public function index()
     {
         $this->paginate = [
-            'contain' => []
+            'contain' => ['Customers']
         ];
         $customers = $this->paginate($this->Customers);
 
@@ -37,7 +37,7 @@ class CustomersController extends AppController
     public function view($id = null)
     {
         $customer = $this->Customers->get($id, [
-            'contain' => ['Customers']
+            'contain' => ['Customers', 'ShoppingLists']
         ]);
 
         $this->set('customer', $customer);
@@ -113,4 +113,24 @@ class CustomersController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+	
+	public function login(){
+		if ($this->request->is('post')) {
+			$user = $this->Auth->identify();
+			if ($user) {
+				$this->Auth->setUser($user);
+				
+				if($this->Auth->user("level_id")==1){
+					return $this->redirect(['controller' => 'customers','action' => 'adminview']);
+				}
+				else if($this->Auth->user("level_id")==0){
+					return $this->redirect(['controller' => 'customers','action' => 'modoview']);
+				}
+			}
+				$this->Flash->error('Votre identifiant et/ou votre mot de passe est incorrect.');
+				debug($this->Auth->identify());
+				debug($this->Auth->user("level_id"));
+				// return $this->redirect(['controller' => 'pages','action' => 'home']);
+		}
+	}
 }
